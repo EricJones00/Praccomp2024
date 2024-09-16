@@ -39,3 +39,10 @@ Ordered
 3. Item 3
 	* Item 3a
 	* Item 3b
+
+## Images
+
+![AA cheat sheet(/Users/ericjones/Desktop/AA\ CHEAT\ SHEET.webp)
+
+Format: \![Alt text](url)
+ 
