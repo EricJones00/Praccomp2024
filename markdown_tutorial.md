@@ -46,4 +46,12 @@ Ordered
 
 Format: \![Alt text](url)
  
+## LINKS
 
+http://brewerlab.net
+
+[Brewer Lab](http://brewerlab.net)
+
+## BACKSLASH ESCAPE
+
+\*Literl asterisks\*
