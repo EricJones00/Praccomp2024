@@ -42,7 +42,7 @@ Ordered
 
 ## Images
 
-![AA cheat sheet(/Users/ericjones/Desktop/AA\ CHEAT\ SHEET.webp)
+![AA cheat sheet](/Users/ericjones/Desktop/AA\ CHEAT\ SHEET.webp)
 
 Format: \![Alt text](url)
  
