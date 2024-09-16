@@ -55,3 +55,23 @@ http://brewerlab.net
 ## BACKSLASH ESCAPE
 
 \*Literl asterisks\*
+
+## FENCED CODE BLOCKS
+
+* Generic example
+
+```
+echo "Hello"
+```
+* Python example
+
+```python
+print("Hello")
+```
+
+* R example
+
+```r
+x <- 4^2
+```
+
