@@ -1,0 +1,13 @@
+﻿, Age (Years),Patient (Gender),Complex I Activity (nmol x min^-1 x mg ^-1,Complex IV Activity (1[sec x mg])
+Disease-free control 1,78,Male,39.6,0.0954
+Disease-free control 2,51,Female,34.9,0.062
+Disease-free control 3,46,Female,40.9,0.0727
+Disease-free control 4,68,Female,29.6,0.0625
+Disease-free control 5,70,Male,38.9,0.0785
+Disease-free control 6,77,Female,35.7,0.0656
+Disease-free control 7,54,Female,29.2,0.079
+Disease-free control 8,76,Male,35.7,0.0889
+Alzheimer's Disease 1,67,Male,30.5,0.0174
+Alzheimer's Disease 2,71,Male,35,0.0571
+Alzheimer's Disease 3,77,Male,35.3,0.0485
+Alzheimer's Disease 4,81,Male,33.4,0.0213

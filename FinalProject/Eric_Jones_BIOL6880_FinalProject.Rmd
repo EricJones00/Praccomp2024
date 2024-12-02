@@ -1,0 +1,139 @@
+---
+title: "Eric Jones BIOL 6880 Final Project"
+output: html_document
+date: "2024-11-04"
+---
+
+# BIOL 6880 Practical Computing Final Project
+
+```{r}
+(Attributes_of_Alzheimer_s_disease_and_disease_free_age_matched_subjects <- read.csv("~/Desktop/Praccomp2024/Attributes of Alzheimer’s disease and disease-free, age-matched subjects.csv"))
+```
+
+
+
+```{r}
+(Alzehimer_s_Disease_Mean_Neuronal_Loss_n_5_by_Neuron_Size <- read.csv("~/Desktop/Praccomp2024/Alzehimer's Disease Mean Neuronal Loss (n=5) by Neuron Size.txt", sep = "\t"))
+```
+
+
+
+```{r}
+library(tidyverse)
+
+(Alzehimer_s_Disease_Mean_Neuronal_Loss_n_5_by_Neuron_Size.cleaned <- Alzehimer_s_Disease_Mean_Neuronal_Loss_n_5_by_Neuron_Size %>%
+  mutate(status = case_when(str_sub(X, 1, 1) == "D" ~ "Control", 
+                            str_sub(X, 1, 1) == "A" ~ "Disease")) %>%
+  column_to_rownames(var = 'X') %>%
+    mutate(status = as.factor(status)) %>%
+    mutate(Patient..Gender. = as.factor(Patient..Gender.))
+)
+
+```
+
+```{r}
+Alzehimer_s_Disease_Mean_Neuronal_Loss_n_5_by_Neuron_Size.cleaned %>%
+  ggplot(aes(x=status, y = X5.40.u, fill = status)) +
+    geom_violin() +
+    geom_boxplot(fill=NA)
+```
+
+```{r}
+t.test(Alzehimer_s_Disease_Mean_Neuronal_Loss_n_5_by_Neuron_Size.cleaned$X5.40.u ~  Alzehimer_s_Disease_Mean_Neuronal_Loss_n_5_by_Neuron_Size.cleaned$status)
+```
+
+```{r}
+Alzehimer_s_Disease_Mean_Neuronal_Loss_n_5_by_Neuron_Size.cleaned %>%
+  ggplot(aes(x=status, y = X41.90.u, fill = status)) +
+    geom_violin() +
+    geom_boxplot(fill=NA)
+```
+
+```{r}
+t.test(Alzehimer_s_Disease_Mean_Neuronal_Loss_n_5_by_Neuron_Size.cleaned$X41.90.u ~  Alzehimer_s_Disease_Mean_Neuronal_Loss_n_5_by_Neuron_Size.cleaned$status)
+
+```
+
+
+```{r}
+Alzehimer_s_Disease_Mean_Neuronal_Loss_n_5_by_Neuron_Size.cleaned %>%
+  ggplot(aes(x=status, y = X91.200.u, fill = status)) +
+    geom_violin() +
+    geom_boxplot(fill=NA)
+```
+
+```{r}
+t.test(Alzehimer_s_Disease_Mean_Neuronal_Loss_n_5_by_Neuron_Size.cleaned$X91.200.u ~  Alzehimer_s_Disease_Mean_Neuronal_Loss_n_5_by_Neuron_Size.cleaned$status)
+
+```
+
+
+```{r}
+Alzehimer_s_Disease_Mean_Neuronal_Loss_n_5_by_Neuron_Size.cleaned %>%
+  ggplot(aes(x=status, y = X.200.u, fill = status)) +
+    geom_violin() +
+    geom_boxplot(fill=NA)
+```
+
+
+```{r}
+t.test(Alzehimer_s_Disease_Mean_Neuronal_Loss_n_5_by_Neuron_Size.cleaned$X.200.u ~  Alzehimer_s_Disease_Mean_Neuronal_Loss_n_5_by_Neuron_Size.cleaned$status)
+
+```
+
+
+```{r}
+Alzehimer_s_Disease_Mean_Neuronal_Loss_n_5_by_Neuron_Size.cleaned %>%
+  ggplot(aes(x=status, y = X5.40.u, fill = status)) +
+    geom_violin() +
+    geom_boxplot(fill=NA) + 
+    facet_wrap(~ Patient..Gender.)
+```
+
+```{r}
+Alzehimer_s_Disease_Mean_Neuronal_Loss_n_5_by_Neuron_Size.cleaned %>%
+  filter(Patient..Gender. == "Male") %>%
+  t.test(X5.40.u~ status, data = .)
+```
+
+
+```{r}
+#install.packages("aod")
+library(aod)
+
+alz.status.nums <- glm(status ~ X5.40.u + X41.90.u + X91.200.u + X.200.u, family = "binomial", data = Alzehimer_s_Disease_Mean_Neuronal_Loss_n_5_by_Neuron_Size.cleaned)
+
+summary(alz.status.nums)
+```
+
+```{r}
+alz.status.nums.age <- glm(status ~ X5.40.u + X41.90.u + X91.200.u + X.200.u + Age..Years., family = "binomial", data = Alzehimer_s_Disease_Mean_Neuronal_Loss_n_5_by_Neuron_Size.cleaned)
+
+summary(alz.status.nums.age)
+```
+
+```{r}
+alz.status.nums.age.sex <- glm(status ~ X5.40.u + X41.90.u + X91.200.u + X.200.u + Age..Years. + Patient..Gender., family = "binomial", data = Alzehimer_s_Disease_Mean_Neuronal_Loss_n_5_by_Neuron_Size.cleaned, na.action = "na.fail")
+
+summary(alz.status.nums.age.sex)
+```
+
+```{r}
+#install.packages("MuMIn")
+
+library(MuMIn)
+
+(alz.status.nums.age.sex.dredge <- dredge(alz.status.nums.age.sex))
+```
+
+```{r}
+summary(get.models(alz.status.nums.age.sex.dredge, 1)[[1]])
+```
+
+```{r}
+
+```
+
+
+
+
